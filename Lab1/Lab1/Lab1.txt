@@ -42,3 +42,11 @@ program.
 3 points:  Show your insertEnd() method, and explain how you got it to work in
            constant time.  Show that your program still prints the right
            output.  Which other methods had to be modified?
+
+Explaining the second solution by Farbod Ghiasi at Sep/3/2017 based on the
+text book by Goodrich:
+    "First we create a new node, then we will assign its next reference to null
+    , set the next reference of the tail to point to this new node, and then
+    update the tail reference itself to this new node"
+
+
