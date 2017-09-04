@@ -1,5 +1,7 @@
 /* SList.java */
 
+import javax.swing.plaf.SliderUI;
+
 /**
  *  The SList class is a singly-linked implementation of the linked list
  *  abstraction.  SLists are mutable data structures, which can grow at either
@@ -11,6 +13,7 @@
 public class SList {
 
   private SListNode head;
+  private SListNode tail;
   private int size;
 
   /**
@@ -20,6 +23,7 @@ public class SList {
   public SList() {
     size = 0;
     head = null;
+    tail = null;
   }
 
   /**
@@ -45,8 +49,22 @@ public class SList {
    *  @param obj the item to be inserted.
    **/
 
+//  public void insertFront(Object obj) {
+//    head = new SListNode(obj, head);
+//    size++;
+//  }
+
   public void insertFront(Object obj) {
-    head = new SListNode(obj, head);
+    if(head == null){
+    
+      head = new SListNode(obj);
+      tail = head;
+    
+    }else {
+    
+      head = new SListNode(obj, head);
+    
+    }
     size++;
   }
 
@@ -55,16 +73,39 @@ public class SList {
    *  @param obj the item to be inserted.
    **/
 
+//  public void insertEnd(Object obj) {
+//    if (head == null) {
+//      head = new SListNode(obj);
+//    } else {
+//      SListNode node = head;
+//      while (node.next != null) {
+//        node = node.next;
+//      }
+//      node.next = new SListNode(obj);
+//    }
+//    size++;
+//  }
+  
+  /**
+   *  insertEnd() inserts item "obj" at the end of this list and it runs at
+   *  the constant time no matter how big is singly linked list.
+   *  @param obj the item to be inserted.
+   **/
+  
   public void insertEnd(Object obj) {
-    if (head == null) {
-      head = new SListNode(obj);
-    } else {
-      SListNode node = head;
-      while (node.next != null) {
-        node = node.next;
-      }
-      node.next = new SListNode(obj);
+    
+    if(size == 0){
+      
+      tail = new SListNode(obj);
+      head = tail;
+      
+    }else {
+      
+      tail.next = new SListNode(obj);
+      tail = tail.next;
+      
     }
+    
     size++;
   }
 
@@ -124,7 +165,21 @@ public class SList {
 
   public static void main (String[] args) {
     // Fill in your solution for Part I here.
-      System.out.println("Kamran Eftekhari");
+    //  System.out.println("Kamran Eftekhari");
+  
+    SList slist1 = new SList();
+    
+    slist1.insertFront(new Integer(12));
+    slist1.insertFront(new Integer(9));
+    slist1.insertFront(new Integer(6));
+    
+    System.out.println("Here is a list:" + slist1);
+    
+    slist1.insertFront(3);
+    slist1.insertEnd(15);
+    
+    System.out.println("Here is a list:" + slist1);
+    
     //testEmpty();
     //testAfterInsertFront();
     //testAfterInsertEnd();
